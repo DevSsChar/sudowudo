@@ -1,0 +1,1 @@
+// create jsx files itself for the code, the folder would have all the components
