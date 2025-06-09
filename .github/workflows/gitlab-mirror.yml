@@ -14,11 +14,11 @@ jobs:
 
       - name: Mirror to GitLab
         run: |
-          git config --global user.name "GitHub Mirror Bot"
-          git config --global user.email "mirror-bot@example.com"
-          git remote add gitlab https://$GITLAB_USERNAME:$GITLAB_TOKEN@gitlab.com/$GITLAB_USERNAME/$GITLAB_REPO.git
+          git config user.name "GitHub Mirror Bot"
+          git config user.email "mirror-bot@example.com"
+          git remote add gitlab https://23it116:${{ secrets.GITLAB_TOKEN }}@gitlab.com/23it116-group/sudowudo2.git
           git push --mirror gitlab
         env:
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
-          GITLAB_USERNAME: your_gitlab_username_here
-          GITLAB_REPO: your_gitlab_repo_name_here
+          GITLAB_USERNAME: 23it116
+          GITLAB_REPO: sudowudo2
