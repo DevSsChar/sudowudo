@@ -19,7 +19,9 @@ jobs:
           git config user.name "GitHub Mirror Bot"
           git config user.email "mirror-bot@example.com"
           git remote add gitlab https://23it116:${{ secrets.GITLAB_TOKEN }}@gitlab.com/23it116-group/sudowudo2.git
-          git push --mirror gitlab
+          git push --force --all gitlab
+          git push --force --tags gitlab
+
         env:
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
           GITLAB_USERNAME: 23it116
