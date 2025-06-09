@@ -1,0 +1,64 @@
+stages:
+  - install
+  - lint
+  # - test-db
+  - build
+  - deploy
+
+variables:
+  NODE_ENV: "production"
+
+cache:
+  paths:
+    - node_modules/
+    - .next/cache
+
+default:
+  image: node:18
+
+services:
+  - name: mongo:6
+    alias: mongo
+
+before_script:
+  - npm ci
+
+install:
+  stage: install
+  script:
+    - echo "Dependencies installed in before_script"
+
+lint:
+  stage: lint
+  script:
+    - echo "Running lint checks..."
+    - npm run lint
+
+# test:
+#   stage: test-db
+#   script:
+#     - echo "Running tests..."
+#     - npm run test
+#   variables:
+#     MONGO_URL: mongodb://mongo:27017/test-db
+
+build:
+  stage: build
+  script:
+    - echo "Building Next.js app..."
+    - npm run build
+    - npm run export || echo "Skipping export (SSR app)"
+  artifacts:
+    paths:
+      - .next/
+      - out/
+    expire_in: 1 hour
+
+deploy:
+  stage: deploy
+  script:
+    - echo "🚀 Deploy step placeholder"
+    - echo "Use rsync/ssh/kubectl when infra is ready"
+  only:
+    - main
+
