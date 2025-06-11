@@ -1,5 +1,4 @@
-// ✅ CORRECT for Tailwind CSS v4+
-module.exports = {
+export default {
   plugins: {
     '@tailwindcss/postcss': {},
     autoprefixer: {},
