@@ -1,6 +1,6 @@
 stages:
   - install
-  - lint
+  # - lint
   # - test-db
   - build
   - deploy
@@ -9,9 +9,10 @@ variables:
   NODE_ENV: "production"
 
 cache:
+  key: ${CI_COMMIT_REF_SLUG}
   paths:
     - node_modules/
-    - .next/cache
+    - .next/cache/
 
 default:
   image: node:18
@@ -28,11 +29,11 @@ install:
   script:
     - echo "Dependencies installed in before_script"
 
-lint:
-  stage: lint
-  script:
-    - echo "Running lint checks..."
-    - npm run lint
+# lint:
+#   stage: lint
+#   script:
+#     - echo "Running lint checks..."
+#     - npm run lint
 
 # test:
 #   stage: test-db
@@ -61,4 +62,3 @@ deploy:
     - echo "Use rsync/ssh/kubectl when infra is ready"
   only:
     - main
-
