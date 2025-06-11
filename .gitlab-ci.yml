@@ -22,7 +22,7 @@ services:
     alias: mongo
 
 before_script:
-  - npm ci
+  - NODE_ENV=development npm ci
 
 install:
   stage: install
